@@ -8,22 +8,18 @@
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
-        /* The switch - the box around the slider */
 .switch {
   position: relative;
   display: inline-block;
   width: 60px;
   height: 34px;
 }
-
-/* Hide default HTML checkbox */
 .switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
 
-/* The slider */
 .slider {
   position: absolute;
   cursor: pointer;
@@ -134,7 +130,7 @@ input:checked + .slider:before {
    }
 
    function update() {
-        $.get("http://localhost:8080/bulb/bulbstatus.php", function(data) {
+        $.get("http://localhost:8080/bulb/lightstatus.php", function(data) {
           $("#status").html("Status: "+data);
           window.setTimeout(update, 1000);
         });
@@ -166,8 +162,9 @@ input:checked + .slider:before {
    <div class="row my-5">
     <div class="col height-60">
        <div class="card text-white bg-primary">
-         <img class="card-img-top" src="./livingroom.png" alt="">
+         <img class="card-img-top" src="./images/livingroom.png" alt="">
          <div class="card-body">
+        <h4 class="card-title">Living room</h4>
           <label class="switch">
             <input type="checkbox" id="bulb" onclick="validate()">
             <span class="slider round"></span>
@@ -179,14 +176,14 @@ input:checked + .slider:before {
     </div>
     <div class="col"> 
           <div class="card text-white bg-primary">
-      <img class="card-img-top" src="./kitchen.png" alt="">
+      <img class="card-img-top" src="./images/kitchen.png" alt="">
       <div class="card-body">
         <h4 class="card-title">Kitchen</h4>
         <label class="switch">
           <input type="checkbox" id="bulbtest" onclick="">
           <span class="slider round"></span>
         </label>
-        <p class="card-text" id="statustest"></p>
+        <p class="card-text" id="statustest">Unavailable</p>
         <p class="card-text">Not available</p>
       </div>
     </div></div>
@@ -200,21 +197,21 @@ input:checked + .slider:before {
             <input type="checkbox" id="bulbtest" onclick="">
             <span class="slider round"></span>
           </label>
-          <p class="card-text" id="statustest"></p>
+          <p class="card-text" id="statustest">Unavailable</p>
           <p class="card-text">Not available</p>
         </div>
       </div>
     </div>
     <div class="col">    
         <div class="card text-white bg-primary">
-      <img class="card-img-top" src="./gatelights.png" alt="">
+      <img class="card-img-top" src="./images/gatelights.png" alt="">
       <div class="card-body">
         <h4 class="card-title">Gate lights</h4>
         <label class="switch">
           <input type="checkbox" id="bulbtest" onclick="">
           <span class="slider round"></span>
         </label>
-        <p class="card-text" id="statustest"></p>
+        <p class="card-text" id="statustest">Unavailable</p>
         <p class="card-text">Not available</p>
       </div>
     </div></div>

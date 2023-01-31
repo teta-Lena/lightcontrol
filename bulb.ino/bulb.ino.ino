@@ -3,7 +3,6 @@
 #define LED D7
 #define LightSensor A0
 WiFiClient wifiClient;    
-const char* host = " 192.168.1.162";
 const int threshold = 250;
 void setup() {
 pinMode(LED, OUTPUT);
@@ -17,14 +16,14 @@ void loop() {
 }
 void processResponse(){
     HTTPClient http;   
-    String Link = "http://192.168.1.162:8080/bulb/device.php";
+    String Link = "http://192.168.1.83:8080/bulb/device.php";
     
     http.begin(wifiClient,Link);     //Specify request destination
     
     int httpCode = http.GET();            //Send the request
     String payload = http.getString();    //Get the response payload
-
-  Serial.println(payload);
+     Serial.println("here");
+    Serial.println(">" + payload);
   
   if(payload =="on"){
     digitalWrite(LED,LOW);
@@ -85,7 +84,7 @@ void processLight(){
  
    if (analogRead(LightSensor) > threshold) {
      HTTPClient http;
-     http.begin(wifiClient,"http://192.168.1.162:8080/bulb/getStatus.php");
+     http.begin(wifiClient,"http://192.168.1.83:8080/bulb/getStatus.php");
      http.addHeader("Content-Type", "application/x-www-form-urlencoded");
      String RequestData = "status=off"; 
      int ResponseCode = http.POST(RequestData);
@@ -94,7 +93,7 @@ void processLight(){
      http.end();
   }else {
     HTTPClient http;
-     http.begin(wifiClient,"http://192.168.1.162:8080/bulb/getStatus.php");
+     http.begin(wifiClient,"http://192.168.1.83:8080/bulb/getStatus.php");
      http.addHeader("Content-Type", "application/x-www-form-urlencoded");
      String RequestData = "status=on"; 
      int ResponseCode = http.POST(RequestData);

@@ -8,16 +8,24 @@ $devicestatus = file_get_contents('bool.txt');
 $lightstatus = file_get_contents('status.txt');
 // print($status);
 
-
-if($devicestatus == 1){
-    $query = mysqli_query($connect,"INSERT INTO devices_status(id,status) VALUES (1,'ON')") or die("Error".mysqli_error());
-    if($lightstatus == 1){
-        $sql = mysqli_query($connect, "UPDATE lights_status SET status= 'ON' WHERE device==1");
+$query = mysqli_query($connect ,"SELECT * from devices_status where id=1");
+ echo " \n";
+if($query->num_rows >0){
+    while($row = $query->fetch_assoc()){
+        $id = $row["id"];
+        echo " \n id: " . $row["id"] ." devicename: " . $row["devicename"] . " Status:" .$row["status"];
+        if($lightstatus == 1){
+            $sql = "insert into lights_status(device,status) values ($id,'ON')";
+            $result = $connect->query($sql);
+            echo $result;
+          }
+          else{
+            $sql = "UPDATE lights_status SET status='OFF' where device = 1";
+            $result = $connect->query($sql);
+          }
     }
+ 
 }
 
-// if($status == 1){
-//     $query = mysqli_query($connect, "INSERT INTO lights_status(status) VALUES ('ON')") or die("Error".mysqli_error());
-// }
 
 ?>
