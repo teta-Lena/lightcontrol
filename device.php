@@ -8,7 +8,7 @@ if(isOn()){
 }
 
 function isOn(){
-    $string = file_get_contents("status.txt");
+    $string = file_get_contents("bool.txt");
     if($string == "1"){
         return true;
     }

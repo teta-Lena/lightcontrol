@@ -1,11 +1,11 @@
 <?php
 
-if($_POST != null){
+if($_POST != null){     
     if($_POST["state"] == "on"){
-        writeOne();
+    writeOne();     
     }else{
         writeZero();
-    }
+    }               
 }
 
 //writeOne function
